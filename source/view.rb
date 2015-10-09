@@ -18,7 +18,6 @@ class View
     else
       puts "Incorrect"
     end
-
   end
 
 end

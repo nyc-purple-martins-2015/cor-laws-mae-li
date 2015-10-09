@@ -29,15 +29,8 @@ class Game
     @questions.each_with_index { |question, index| @deck << Card.new(question: question, answer: @answers[index]) }
   end
 
-  def ask_question
-    # @deck.each_with_index do |card, index|
-      "Question: #{@deck[0].question}"
-      # if user_answer == card.answer
-      #   "Correct"
-      # else
-      #   "Incorrect, the answer was #{card.answer}"
-      # end
-    # end
+  def ask_question(index)
+      "Question: #{@deck[index].question}"
   end
 
   def correct?(args)

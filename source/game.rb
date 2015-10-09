@@ -1,3 +1,5 @@
+require_relative './card'
+
 class Game
 
   attr_reader :deck, :load_array, :questions, :answers
@@ -29,6 +31,11 @@ class Game
 
   def start_game
     "Welcome to Flashcards. Would you like to play?"
+  end
+
+  def show_deck
+    new_deck = deck.map {|card| card.show_card}
+    new_deck
   end
 
 end

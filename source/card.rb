@@ -7,5 +7,7 @@ attr_reader :question, :answer
     @answer = args.fetch(:answer)
   end
 
-
+  def show_card
+    "Question: #{question}\nAnswer: #{answer}\n ----------------------------------------------"
+  end
 end

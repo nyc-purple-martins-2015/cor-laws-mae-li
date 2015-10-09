@@ -1,3 +1,5 @@
+require_relative "view"
+
 class Game
 
   attr_reader :deck, :load_array, :questions, :answers
@@ -27,8 +29,24 @@ class Game
     @questions.each_with_index { |question, index| @deck << Card.new(question: question, answer: @answers[index]) }
   end
 
-  def start_game
-    "Welcome to Flashcards. Would you like to play?"
+  def ask_question
+    # @deck.each_with_index do |card, index|
+      "Question: #{@deck[0].question}"
+      # if user_answer == card.answer
+      #   "Correct"
+      # else
+      #   "Incorrect, the answer was #{card.answer}"
+      # end
+    # end
+  end
+
+  def correct?(args)
+    if args == @deck[0].answer
+      return true
+    end
+  end
+
+  def answer_question
   end
 
 end

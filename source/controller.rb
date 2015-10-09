@@ -13,5 +13,5 @@ if view.start_game == "yes"
     view.response(game.correct?(view.get_answer, index))
     view.show_answer(card)
   end
-
+  view.show_results(game.count_results)
 end

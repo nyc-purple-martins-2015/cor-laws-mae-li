@@ -1,12 +1,14 @@
 class Game
 
-  attr_reader :deck, :load_array, :questions, :answers
+  attr_reader :deck, :load_array, :questions, :answers, :correct, :incorrect, :results
 
   def initialize(args = {})
     @deck = []
     @load_array =[]
     @questions = []
     @answers = []
+    @correct = []
+    @incorrect = []
   end
 
   def load_cards(filename)
@@ -33,7 +35,9 @@ class Game
 
   def correct?(user_input, index)
     if user_input == @deck[index].answer
+      @deck[index].status = true
       return true
+
     end
   end
 
@@ -44,6 +48,10 @@ class Game
   def show_deck
     new_deck = deck.map {|card| card.show_card}
     new_deck
+  end
+
+  def count_results
+    @deck.group_by {|card| card.status == true}
   end
 
 

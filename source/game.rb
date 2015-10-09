@@ -51,9 +51,12 @@ class Game
   end
 
   def count_results
-    @deck.group_by {|card| card.status == true}
+    @results = @deck.group_by {|card| card.status == true}
   end
 
+  def reset_deck
+    @deck = @results[false]
+  end
 
 end
 

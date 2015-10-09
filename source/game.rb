@@ -1,5 +1,3 @@
-require_relative "view"
-
 class Game
 
   attr_reader :deck, :load_array, :questions, :answers
@@ -30,16 +28,17 @@ class Game
   end
 
   def ask_question(index)
-      "Question: #{@deck[index].question}"
+    @deck[index].question
   end
 
-  def correct?(args)
-    if args == @deck[0].answer
+  def correct?(user_input, index)
+    if user_input == @deck[index].answer
       return true
     end
   end
 
-  def answer_question
+  def answer_question(index)
+    @deck[index].answer
   end
 
 end

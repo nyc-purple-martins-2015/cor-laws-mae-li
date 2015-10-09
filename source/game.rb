@@ -41,6 +41,12 @@ class Game
     @deck[index].answer
   end
 
+  def show_deck
+    new_deck = deck.map {|card| card.show_card}
+    new_deck
+  end
+
+
 end
 
 

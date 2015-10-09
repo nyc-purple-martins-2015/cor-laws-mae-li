@@ -7,9 +7,6 @@ view = View.new()
 game.load_cards('flashcard_samples.txt')
 game.create_cards
 
-
-
-
 if view.start_game == "yes"
   game.deck.each_with_index do |card, index|
     view.show_question(game.ask_question(index))

@@ -27,9 +27,25 @@ class Game
     @questions.each_with_index { |question, index| @deck << Card.new(question: question, answer: @answers[index]) }
   end
 
-  def start_game
-    "Welcome to Flashcards. Would you like to play?"
+  def ask_question(index)
+    @deck[index].question
   end
+
+  def correct?(user_input, index)
+    if user_input == @deck[index].answer
+      return true
+    end
+  end
+
+  def answer_question(index)
+    @deck[index].answer
+  end
+
+  def show_deck
+    new_deck = deck.map {|card| card.show_card}
+    new_deck
+  end
+
 
 end
 

@@ -9,6 +9,7 @@ class View
   end
 
   def end_game
+    puts "You answered all questions correctly!"
     puts "Do you want to try again with the whole deck?"
     answer = gets.chomp
   end

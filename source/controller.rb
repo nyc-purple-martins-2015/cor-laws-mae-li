@@ -41,7 +41,7 @@ end
   elsif ARGV[0] == "cards"
     game = Game.new()
     view = View.new()
-    game.load_cards('flashcard_samples2.txt')
+    game.load_cards(ARGV[1])
     game.create_cards
     puts game.show_deck
   end

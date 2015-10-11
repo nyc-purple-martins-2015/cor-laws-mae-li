@@ -39,6 +39,8 @@ class Game
     if user_input == @deck[index].answer
       @deck[index].status = true
       return true
+    else 
+      return false
 
     end
   end

@@ -48,4 +48,23 @@ let(:game) {Game.new}
     end
   end
 
+  describe '#correct?' do
+  it 'should return true if the guess is correct' do 
+
+  game.load_cards('flashcard_samples2.txt')
+  game.create_cards
+
+  expect(game.correct?("alias", 0)).to eq(true)
+  end 
+
+  it 'should return false if the guess is incorrect' do 
+
+  game.load_cards('flashcard_samples2.txt')
+  game.create_cards
+
+  expect(game.correct?("albert", 0)).to eq(false)
+  end
+ end
+  
+
 end

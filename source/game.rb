@@ -8,8 +8,6 @@ class Game
     @load_array =[]
     @questions = []
     @answers = []
-    @correct = []
-    @incorrect = []
     @results = {true => [], false => []}
   end
 
@@ -38,18 +36,11 @@ class Game
   def correct?(user_input, index)
     if user_input == @deck[index].answer
       @deck[index].status = true
-      return true
-
     end
   end
 
   def answer_question(index)
     @deck[index].answer
-  end
-
-  def show_deck
-    new_deck = deck.map {|card| card.show_card}
-    new_deck
   end
 
   def count_results

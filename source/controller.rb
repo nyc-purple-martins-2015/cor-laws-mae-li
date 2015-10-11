@@ -2,37 +2,46 @@ require_relative 'game'
 require_relative 'card'
 require_relative 'view'
 
+def play
 game = Game.new()
 view = View.new()
 game.load_cards('flashcard_samples2.txt')
 game.create_cards
 
   if view.start_game == "yes"
-    game.deck.each_with_index do |card, index|
-      view.show_question(game.ask_question(index))
-      view.response(game.correct?(view.get_answer, index))
-      view.show_answer(card)
-    end
-    view.show_results(game.count_results)
-    game.reset_deck
-    x = 2
-    until game.results[0] == "done"
-    puts "-------------------------"
-    puts "Round #{x}"
-    puts "-------------------------"
-      game.results[false].each_with_index do |card, index|
+    round = 1
+    while game.results.has_key?(false) == true
+      puts "-------------------------"
+      puts "Round #{round}"
+      puts "-------------------------"
+      game.deck.each_with_index do |card, index|
         view.show_question(game.ask_question(index))
         view.response(game.correct?(view.get_answer, index))
         view.show_answer(card)
+      end
+      game.count_results
+      if game.results.has_key?(false) == false
+        if view.end_game == "yes"
+          view.continue
+          play
         end
-      view.show_results(game.count_results)
-      game.reset_deck
-      x += 1
+      else
+        p game.results
+        view.show_results(game.results)
+        game.reset_deck
+        round += 1
+      end
     end
-    if view.end_game == "yes"
-      "Too bad!"
-    else return "Thanks for playing!"
-    end
+    return view.thanks
+  end
 end
 
-game
+  if ARGV[0] == "begin"
+    play
+  elsif ARGV[0] == "cards"
+    game = Game.new()
+    view = View.new()
+    game.load_cards('flashcard_samples2.txt')
+    game.create_cards
+    puts game.show_deck
+  end

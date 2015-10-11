@@ -5,16 +5,16 @@ class View
 
   def start_game
     puts "Are you ready to play?"
-    answer = gets.chomp
+    answer = STDIN.gets.chomp
   end
 
   def end_game
     puts "Do you want to try again with the whole deck?"
-    answer = gets.chomp
+    answer = STDIN.gets.chomp
   end
 
   def get_answer
-    answer = gets.chomp
+    answer = STDIN.gets.chomp
   end
 
   def response(arg)
@@ -39,5 +39,12 @@ class View
     puts "Incorrect: #{results[false].length}"
   end
 
+  def continue
+    puts "Here we go again!"
+  end
+
+  def thanks
+   puts "Thanks for playing!"
+  end
 
 end

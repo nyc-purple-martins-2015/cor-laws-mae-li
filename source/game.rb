@@ -1,6 +1,7 @@
 class Game
 
-  attr_reader :deck, :load_array, :questions, :answers, :correct, :incorrect, :results
+  attr_reader :deck, :load_array, :questions, :answers, :correct, :incorrect
+  attr_accessor :results
 
   def initialize(args = {})
     @deck = []
@@ -9,6 +10,7 @@ class Game
     @answers = []
     @correct = []
     @incorrect = []
+    @results = {true => [], false => []}
   end
 
   def load_cards(filename)
@@ -52,6 +54,10 @@ class Game
 
   def count_results
     @results = @deck.group_by {|card| card.status == true}
+    if @results[true] == nil
+      @results[true] = []
+    end
+    @results
   end
 
   def reset_deck

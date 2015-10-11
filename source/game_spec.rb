@@ -8,11 +8,49 @@ describe 'Game' do
  let(:new_game) { Game.new() }
  let(:card) { Card.new()}
 
-  describe '#load_cards' do
-  end
+ describe '#load_cards' do
+   it 'should load an array of strings from a file' do
+    new_game.load_cards('flashcard_samples2.txt')
+    expect(new_game.load_array[0]).to be_a(String)
+   end
+   it 'should create an array with odd numbered items as answers' do
+    new_game.load_cards('flashcard_samples2.txt')
+    expect(new_game.load_array[3]).to eql("and")
+   end
+   it 'should create an array with even numbered items as questions' do
+    new_game.load_cards('flashcard_samples2.txt')
+    expect(new_game.load_array[2]).to eql("A command that appends two or more objects together.")
+   end
+ end
 
   describe '#create_cards' do
+    it 'each item in @questions should be a question' do
+      new_game.load_cards('flashcard_samples2.txt')
+      new_game.create_cards
+      expect(new_game.questions[0].split(" ").length).to be > 3
+    end
+    it 'each item in @answers should be an answer' do
+      new_game.load_cards('flashcard_samples2.txt')
+      new_game.create_cards
+      expect(new_game.answers[0].split(" ").length).to be < 3
+    end
+    it 'should return an array of objects called @deck with an attribute called \'question\'' do
+      new_game.load_cards('flashcard_samples2.txt')
+      new_game.create_cards
+      expect(new_game.deck[0].question).to eql("To create a second name for the variable or method.")
+    end
+    it 'should return an array of objects called @deck with an attribute called \'answer\'' do
+      new_game.load_cards('flashcard_samples2.txt')
+      new_game.create_cards
+      expect(new_game.deck[0].answer).to eql("alias")
+    end
+    it 'should return an array of objects called @deck with an attribute called \'status\'' do
+      new_game.load_cards('flashcard_samples2.txt')
+      new_game.create_cards
+      expect(new_game.deck[0].status).to eql(false)
+    end
   end
+
 
   describe '#ask_question' do
  		it 'expects ask_question to return the correct question' do
@@ -47,7 +85,7 @@ describe 'Game' do
   		new_game.load_cards('flashcard_samples2.txt')
   		new_game.create_cards
 
-  		expect(new_game.correct?("alien", 0)).to eq(false)
+  		expect(new_game.correct?("alias", 0)).to eq(false)
   	end
   end
 

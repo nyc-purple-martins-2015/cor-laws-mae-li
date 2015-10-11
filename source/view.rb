@@ -18,11 +18,13 @@ class View
   end
 
   def response(arg)
-    if arg == true
-      puts "Correct"
-    else
-      puts "Incorrect"
-    end
+    puts arg == true ? "Correct" : "Incorrect"
+  end
+
+  def round(number)
+    puts "-------------------------"
+    puts "Round #{number}"
+    puts "-------------------------"
   end
 
   def show_question(question)
@@ -37,6 +39,10 @@ class View
     puts ""
     puts "Correct: #{results[true].length}"
     puts "Incorrect: #{results[false].length}"
+  end
+
+  def all_cards(deck)
+    deck.map {|card| puts card}
   end
 
   def continue

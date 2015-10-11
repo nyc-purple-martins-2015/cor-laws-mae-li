@@ -56,36 +56,36 @@ describe 'Game' do
     it 'expects ask_question to return the correct question' do
 
       new_game.load_cards('flashcard_samples2.txt')
-      new_game.create_cards 
-      
+      new_game.create_cards
+
       expect(new_game.ask_question(0)).to eq("To create a second name for the variable or method.")
     end
 
     it 'expects ask_question to return the correct question' do
 
       new_game.load_cards('flashcard_samples2.txt')
-      new_game.create_cards 
-      
+      new_game.create_cards
+
       expect(new_game.ask_question(3)).to eq("Delimits a \"begin\" block of code, which can allow the use of while and until in modifier position with multi-line statements.")
     end
 
   end
 
   describe '#correct?' do
-    it 'should return true if the guess is correct' do 
+    it 'should return true if the guess is correct' do
 
       new_game.load_cards('flashcard_samples2.txt')
       new_game.create_cards
 
       expect(new_game.correct?("alias", 0)).to eq(true)
-    end 
+    end
 
-    it 'should return false if the guess is incorrect' do 
+    it 'should return false if the guess is incorrect' do
 
       new_game.load_cards('flashcard_samples2.txt')
       new_game.create_cards
 
-      expect(new_game.correct?("alias", 0)).to eq(false)
+      expect(new_game.correct?("alien", 0)).to eq(nil)
     end
   end
 
@@ -107,7 +107,7 @@ describe 'Game' do
 
 
    describe 'count_results' do
-    
+
      it 'returns a hash' do
        new_game.load_cards('flashcard_samples2.txt')
        new_game.create_cards
@@ -116,7 +116,7 @@ describe 'Game' do
    end
 
    describe 'reset_deck' do
-     
+
      it 'returns an array' do
        new_game.load_cards('flashcard_samples2.txt')
        new_game.create_cards

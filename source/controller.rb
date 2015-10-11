@@ -30,17 +30,17 @@ def play(file)
         number += 1
       end
     end
-    view.thanks
   end
+  view.thanks
 end
 
   if ARGV[0] == "begin"
     $file = ARGV[1]
-    play(ARGV[1])
+    play($file)
   elsif ARGV[0] == "cards"
     game = Game.new()
     view = View.new()
-    game.load_cards(ARGV[1])
+    game.load_cards($file)
     game.create_cards
     view.all_cards(game.deck)
   end

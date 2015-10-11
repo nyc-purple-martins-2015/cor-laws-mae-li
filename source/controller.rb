@@ -2,18 +2,17 @@ require_relative 'game'
 require_relative 'card'
 require_relative 'view'
 
-def play
-game = Game.new()
-view = View.new()
-game.load_cards('flashcard_samples2.txt')
-game.create_cards
+def play(file)
+
+  game = Game.new()
+  view = View.new()
+  game.load_cards(file)
+  game.create_cards
 
   if view.start_game == "yes"
-    round = 1
+    number = 1
     while game.results.has_key?(false) == true
-      puts "-------------------------"
-      puts "Round #{round}"
-      puts "-------------------------"
+      view.round(number)
       game.deck.each_with_index do |card, index|
         view.show_question(game.ask_question(index))
         view.response(game.correct?(view.get_answer, index))
@@ -26,22 +25,21 @@ game.create_cards
           play
         end
       else
-        p game.results
         view.show_results(game.results)
         game.reset_deck
-        round += 1
+        number += 1
       end
     end
-    return view.thanks
+    view.thanks
   end
 end
 
   if ARGV[0] == "begin"
-    play
+    play(ARGV[1])
   elsif ARGV[0] == "cards"
     game = Game.new()
     view = View.new()
     game.load_cards(ARGV[1])
     game.create_cards
-    puts game.show_deck
+    view.all_cards(game.deck)
   end

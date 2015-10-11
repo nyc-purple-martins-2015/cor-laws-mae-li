@@ -25,6 +25,12 @@ class View
     end
   end
 
+  def round(number)
+    puts "-------------------------"
+    puts "Round #{number}"
+    puts "-------------------------"
+  end
+
   def show_question(question)
     puts "Question: #{question} "
   end
@@ -37,6 +43,10 @@ class View
     puts ""
     puts "Correct: #{results[true].length}"
     puts "Incorrect: #{results[false].length}"
+  end
+
+  def all_cards(deck)
+    deck.map {|card| puts "Question: #{card.question}\n * * *\nAnswer: #{card.answer}\n---------------------------"}
   end
 
   def continue

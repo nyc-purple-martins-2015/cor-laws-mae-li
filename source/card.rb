@@ -10,7 +10,7 @@ attr_accessor :status
     @status = args.fetch(:status, false)
   end
 
-  def show_card
+  def to_s
     "Question: #{question}\nAnswer: #{answer}\n ----------------------------------------------"
   end
 

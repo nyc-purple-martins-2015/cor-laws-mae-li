@@ -2,11 +2,10 @@ require_relative 'game'
 require_relative 'card'
 require_relative 'view'
 
-def play
-
+def play(file)
   game = Game.new()
   view = View.new()
-  game.load_cards('flashcard_samples2.txt')
+  game.load_cards($file)
   game.create_cards
 
   if view.start_game == "yes"
@@ -22,7 +21,7 @@ def play
       if game.results.has_key?(false) == false
         if view.end_game == "yes"
           view.continue
-          play
+          play($file)
         end
       else
         view.show_results(game.results)
@@ -30,16 +29,18 @@ def play
         number += 1
       end
     end
-    view.thanks
   end
+  view.thanks
 end
 
+
   if ARGV[0] == "begin"
-    play
+    $file = ARGV[1]
+    play($file)
   elsif ARGV[0] == "cards"
     game = Game.new()
     view = View.new()
-    game.load_cards('flashcard_samples2.txt')
+    game.load_cards($file)
     game.create_cards
     view.all_cards(game.deck)
   end

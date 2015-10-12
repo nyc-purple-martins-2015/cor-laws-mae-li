@@ -56,8 +56,3 @@ class Game
   end
 
 end
-
-
-
-
-# start game, ask questions, receive answers, give results, and move to next question

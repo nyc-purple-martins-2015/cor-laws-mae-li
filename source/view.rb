@@ -46,7 +46,7 @@ class View
   end
 
   def all_cards(deck)
-    deck.map {|card| puts "Question: #{card.question}\n * * *\nAnswer: #{card.answer}\n---------------------------"}
+    deck.map {|card| puts card}
   end
 
   def continue

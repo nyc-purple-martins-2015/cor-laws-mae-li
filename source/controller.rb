@@ -34,6 +34,7 @@ def play(file)
   view.thanks
 end
 
+
   if ARGV[0] == "begin"
     $file = ARGV[1]
     play($file)
